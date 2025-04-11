@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Redirection OAuth</title>
+  <title>OAuth2 Redirect</title>
 </head>
 <body>
-  <h1>Connexion réussie</h1>
-  <p>Vous pouvez retourner dans l'application.</p>
+  <h1>Connexion en cours...</h1>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
-
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
     if (code) {
-      // Envoie le code au serveur local (port 8080 par exemple)
-      fetch("http://localhost:8080/oauth/code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ code })
-      });
+      // Redirige vers ton app macOS via scheme personnalisé
+      window.location.href = `protrademanager://oauth/callback?code=${code}`;
+    } else {
+      document.body.innerHTML = "<h2>Erreur : aucun code trouvé dans l'URL.</h2>";
     }
   </script>
 </body>
