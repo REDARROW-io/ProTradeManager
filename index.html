@@ -10,7 +10,7 @@
     const code = params.get("code");
     if (code) {
       // Redirige vers ton app macOS via scheme personnalisé
-     window.location.replace = `KeyOne://oauth/callback?code=${code}`;
+     window.location.href = `KeyOne://oauth/callback?code=${code}`;
     } else {
       document.body.innerHTML = "<h2>Erreur : aucun code trouvé dans l'URL.</h2>";
     }
